@@ -20,8 +20,6 @@ if __name__ == "__main__":
     src_path = "./model/onnx_mobilenet_v1/mobilenet_imagenet.onnx"
     dst_path = "./model/tensorrt_mobilenet_v1/mobilenet_imagenet.trt"
 
-    src_path = ""
-
     device_index = "0"
     device_memory_percent = 0.1
 

@@ -8,8 +8,7 @@ if __name__ == "__main__":
     trt_path = "./model/tensorrt_mobilenet_v1/mobilenet_imagenet.trt"
     tf_keras_path = "./model/tf_keras_mobilenet_v1/mobilenet_imagenet_0_224_tf.h5"
     img_path = "./model/tiger_cat.jpg"
-    img_tfdata = DataProc.im2tf(img_path, nn_input_size)
-
+    
     device_index = "0"
     device_memory_percent = 0.1
 
@@ -22,6 +21,7 @@ if __name__ == "__main__":
     from src import TFProc
     from src import TensorRTProc
     
+    img_tfdata = DataProc.im2tf(img_path, nn_input_size)
     tf_keras = TFProc.Classification(tf_keras_path, nn_input_size)
     trt_engine = TensorRTProc.Classification(trt_path, nn_input_size)
     
