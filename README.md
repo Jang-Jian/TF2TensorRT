@@ -15,6 +15,8 @@ These parameters are presented in the *`Main4ModelCvter.py`*.
 
 ## Main4TRTInference.py
 
+These parameters are presented in the *`Main4TRTInference.py`*.
+
 * nn_input_size: Assign nn input size, such as (224, 224, 3).
 * trt_path: Saved path for tensorrt engine (*trt).
 * tf_keras_path: Saved path for tensorflow.keras model.
