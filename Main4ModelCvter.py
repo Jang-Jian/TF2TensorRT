@@ -15,10 +15,10 @@ from src import TensorRTProc
 if __name__ == "__main__":
     action = "onnx2trt" # "tf2onnx" or "onnx2trt".
     precision = "float32" # "float32", "float16" & "".
-    #src_path = "./model/tf_keras_mobilenet_v1/mobilenet_imagenet_0_224_tf.h5"
-    #dst_path = "./model/onnx_mobilenet_v1/mobilenet_imagenet.onnx"
-    src_path = "./model/onnx_mobilenet_v1/mobilenet_imagenet.onnx"
-    dst_path = "./model/tensorrt_mobilenet_v1/mobilenet_imagenet.trt"
+    #src_path = "./model/tf_keras/efficientbet_b0_imagenet_0_224_tf.h5"
+    #dst_path = "./model/onnx/efficientbet_b0_imagenet.onnx"
+    src_path = "./model/onnx/efficientbet_b0_imagenet.onnx"
+    dst_path = "./model/tensorrt/efficientbet_b0_imagenet.trt"
 
     device_index = "0"
     device_memory_percent = 0.1

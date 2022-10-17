@@ -1,5 +1,5 @@
-import csv
 import cv2
+import json
 import numpy as np
 
 
@@ -23,15 +23,15 @@ def im2tf(img_path: str, out_size: (int, int) = (224, 224),
     img_data = np.expand_dims(img_data, axis=0).astype(dtype)
     return img_data
 
-def readimgnet_label(csv_path: str) -> [[]]:
-    """
-    read imagenet label from csv file.
-    """
-    dst_list = []
-    with open(csv_path, newline='') as csvfile:
-        rows = csv.reader(csvfile)
-        for row in rows:
-            label_name = row[1]
-            dst_list.append(label_name)
 
-    return dst_list
+class ImageNetProc(object):
+    def __init__(self, json_path: str = "./model/imagenet_label.json") -> None:
+        with open(json_path, newline='') as jsonfile:
+            self.__data = json.load(jsonfile)
+
+    def label(self, index: int) -> str:
+        """
+        get name of class for imagenet.
+        """
+        label_info = self.__data[str(index)]
+        return label_info[1]
