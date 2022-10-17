@@ -9,12 +9,11 @@ onnxmltools=='1.9.1'
 """
 
 from src import TFVars
-from src import TensorRTProc
 
 
 if __name__ == "__main__":
     action = "onnx2trt" # "tf2onnx" or "onnx2trt".
-    precision = "float32" # "float32", "float16" & "".
+    precision = "float16" # "float32", "float16" & "".
     #src_path = "./model/tf_keras/efficientbet_b0_imagenet_0_224_tf.h5"
     #dst_path = "./model/onnx/efficientbet_b0_imagenet.onnx"
     src_path = "./model/onnx/efficientbet_b0_imagenet.onnx"
@@ -29,6 +28,7 @@ if __name__ == "__main__":
     TFVars.device_memory_percent = device_memory_percent
 
     from src import InitTFSetup
+    from src import TensorRTProc
 
     print("Current using CUDA device name:", InitTFSetup.gpu_name)
     if action == "tf2onnx":
