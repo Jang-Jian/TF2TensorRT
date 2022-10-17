@@ -105,7 +105,6 @@ class Classification(object):
         if not os.path.exists(trt_path):
             print("Classification(): " + trt_path + " model is not existed.")
 
-        print("TensorRT.Engine() was started !")
         #self.cuda_ctx = cuda.Device(0).make_context() # Use GPU:0
         TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE)
 
@@ -117,11 +116,9 @@ class Classification(object):
 
         DataProc.model_warmup(self, input_size)
 
-        print("TensorRT.Engine() was initialized completely !")
-
     def __allocate_io_buffers(self) -> tuple:
         """
-        allocate all cuda and host buffers.
+        allocate device and host buffers.
         """
         inputs = []
         outputs = []
@@ -179,10 +176,10 @@ class Classification(object):
         np.copyto(self.__inputs[0].host, src.ravel())
         #trt_outputs = None
         #with engine.create_execution_context() as context:
-        trt_outputs = self.__trt_engine_inference()
+        trt_outs = self.__trt_engine_inference()
 
-        result_tesnor = trt_outputs[0].reshape(1, -1)
-        max_index = np.argmax(result_tesnor)
-        max_score = float(result_tesnor[0][max_index])
+        result_np = trt_outs[0].reshape(1, -1)
+        pred_index = np.argmax(result_np)
+        pred_score = float(result_np[0][pred_index])
         
-        return (max_index, max_score)
+        return (pred_index, pred_score)
